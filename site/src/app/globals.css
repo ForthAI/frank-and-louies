@@ -1,0 +1,237 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Frank & Louie's design tokens.
+  Palette sampled from the master logo SVG + brand guide PDF.
+  Brand colors are exposed as Tailwind utilities (bg-turquoise, text-blush, …)
+  AND mapped onto shadcn's semantic tokens (--primary, --secondary, …).
+*/
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Type — Greycliff CF (brand typeface) for both body and headlines */
+  --font-sans: var(--font-greycliff);
+  --font-display: var(--font-greycliff);
+  --font-heading: var(--font-greycliff);
+  --font-mono: var(--font-geist-mono);
+
+  /* Brand palette — BRAND.md exact values. Do NOT introduce off-palette colors. */
+  --color-turquoise: #009cb7; /* Bascio Blue (primary) */
+  --color-teal: #00a3ab; /* Teal */
+  --color-turquoise-deep: #005143; /* Evergreen — deep, AA-safe text/labels */
+  --color-evergreen: #005143;
+  --color-blush: #f5e7e6; /* Background */
+  --color-blush-deep: #ecd7d5;
+  --color-cream: #fbf4f0; /* near-white neutral */
+  --color-charcoal: #2b2b2b; /* body text neutral */
+  --color-coral: #ef3f44; /* Blush Red (warm accent) */
+  --color-blush-red: #ef3f44;
+  --color-red: #d12128; /* Red */
+  --color-spicy: #af1f23; /* Spicy Red */
+  --color-brown: #7a431d; /* Brown */
+  --color-basil: #00a84d; /* Basil Green */
+
+  /* shadcn semantic tokens (mapped to brand) */
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --radius: 0.875rem;
+
+  --background: #ffffff;
+  --foreground: #2b2b2b;
+  --card: #ffffff;
+  --card-foreground: #2b2b2b;
+  --popover: #ffffff;
+  --popover-foreground: #2b2b2b;
+
+  --primary: #009cb7; /* turquoise */
+  --primary-foreground: #fbf4f0; /* warm near-white */
+
+  --secondary: #f5e7e6; /* blush */
+  --secondary-foreground: #2b2b2b;
+
+  --muted: #f5e7e6;
+  --muted-foreground: #715f5d; /* warm muted gray */
+
+  --accent: #f5e7e6;
+  --accent-foreground: #005143;
+
+  --destructive: oklch(0.577 0.245 27.325);
+
+  --border: #e7d7d5; /* blush-tinted hairline */
+  --input: #ddc9c7;
+  --ring: #009cb7;
+
+  --chart-1: #009cb7;
+  --chart-2: #d12128;
+  --chart-3: #7a431d;
+  --chart-4: #00a84d;
+  --chart-5: #af1f23;
+
+  --sidebar: #f5e7e6;
+  --sidebar-foreground: #2b2b2b;
+  --sidebar-primary: #009cb7;
+  --sidebar-primary-foreground: #fbf4f0;
+  --sidebar-accent: #ecd7d5;
+  --sidebar-accent-foreground: #005143;
+  --sidebar-border: #e7d7d5;
+  --sidebar-ring: #009cb7;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+    /* offset anchored scroll for the sticky nav */
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Display headings use the chunky rounded face */
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: #009cb7;
+    color: #fbf4f0;
+  }
+}
+
+@layer components {
+  /* Section wrapper: consistent rhythm + max width */
+  .container-fl {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  /* Chunky brand display headline scale */
+  .display-xl {
+    font-family: var(--font-display);
+    @apply text-5xl leading-[0.95] font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl;
+  }
+  .display-lg {
+    font-family: var(--font-display);
+    @apply text-4xl leading-[0.98] font-extrabold tracking-tight sm:text-5xl md:text-6xl;
+  }
+  .display-md {
+    font-family: var(--font-display);
+    @apply text-3xl leading-tight font-bold tracking-tight sm:text-4xl;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold tracking-[0.22em] uppercase;
+  }
+}
+
+@layer utilities {
+  /* Deli-paper texture: two-tone repeating faces (see brand PDF p.17).
+     Tiles live in /public/brand/. */
+  .bg-deli {
+    background-color: #009cb7;
+    background-image: url("/brand/deli-tile.svg");
+    background-size: 128px 128px;
+  }
+  .bg-deli-blush {
+    background-color: #f5e7e6;
+    background-image: url("/brand/deli-tile-blush.svg");
+    background-size: 128px 128px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Gentle idle bob for floating cutouts */
+  @keyframes floaty {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+  .animate-floaty {
+    animation: floaty 6s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-floaty {
+      animation: none;
+    }
+  }
+}
+
+/* ── Scroll-intro gating ─────────────────────────────────────
+   The intro plays once per session. An inline script in the home page sets
+   data-intro-skip (returning / reduced-motion → hide it before paint, no flash)
+   or data-intro-playing (first visit → hide the nav until the badge flies up). */
+html[data-intro-skip] .fl-intro {
+  display: none;
+}
+html[data-intro-playing] header {
+  opacity: 0;
+  pointer-events: none;
+}
+/* Hide the nav's own logo until the flying badge has landed (one logo, no double). */
+html[data-intro-active] [data-nav-logo] {
+  opacity: 0;
+}

@@ -1,0 +1,28 @@
+# OS
+.DS_Store
+**/.DS_Store
+
+# dependencies / build output (rebuilt by Vercel)
+**/node_modules/
+**/.next/
+**/out/
+**/build/
+*.tsbuildinfo
+
+# env & secrets
+**/.env
+**/.env.*
+!**/.env.example
+
+# vercel
+**/.vercel
+
+# logs
+*.log
+npm-debug.log*
+
+# Brand-asset archives & cutout masters — reference material only, NOT used by
+# the build (fonts ship from site/src/fonts; images from site/public). Keeping
+# these out keeps the repo lean and fast to clone.
+site/brand-assets/
+brand-assets/
