@@ -10,7 +10,7 @@ export const hero = {
   eyebrow: "The Rehoboth Beach Original",
   // Rendered as three stacked, color-blocked lines.
   headline: ["From Our", "Family", "to Yours."],
-  sub: "A family-run Italian bakery & specialty kitchen in Rehoboth Beach, Delaware — home of the legendary Buttercake. We take the time to do it right.",
+  sub: "A family-run Italian bakery & specialty retailer in Rehoboth Beach, Delaware — home of the legendary Buttercake. We take the time to do it right.",
   primaryCta: { label: "Visit Us", href: "#visit" },
   secondaryCta: { label: "See the Goods", href: "#products" },
 };

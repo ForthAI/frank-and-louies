@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 import { footerLinks } from "@/content/nav";
 import { Logo } from "@/components/brand/Logo";
@@ -76,13 +76,6 @@ export function SiteFooter() {
                 </span>
               </li>
             ))}
-            <li className="flex gap-3">
-              <Phone className="mt-0.5 size-4 shrink-0 text-turquoise" aria-hidden />
-              <a href={siteConfig.phoneHref} className="text-charcoal/80 hover:text-turquoise-deep">
-                {siteConfig.phone}
-                <span className="block text-xs text-muted-foreground">{siteConfig.phoneNote}</span>
-              </a>
-            </li>
             <li className="flex gap-3">
               <Mail className="mt-0.5 size-4 shrink-0 text-turquoise" aria-hidden />
               <a

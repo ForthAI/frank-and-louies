@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Mail, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 import { ContactForm } from "./ContactForm";
 import { Reveal } from "@/components/brand/Reveal";
@@ -31,15 +31,6 @@ export function ContactSection() {
             <div>
               <h3 className="eyebrow text-turquoise-deep">Reach us directly</h3>
               <ul className="mt-4 space-y-4">
-                <li className="flex items-start gap-3">
-                  <Phone className="mt-0.5 size-5 shrink-0 text-turquoise" aria-hidden />
-                  <a
-                    href={siteConfig.phoneHref}
-                    className="font-display text-lg font-bold text-charcoal hover:text-turquoise-deep"
-                  >
-                    {siteConfig.phone}
-                  </a>
-                </li>
                 <li className="flex items-start gap-3">
                   <Mail className="mt-0.5 size-5 shrink-0 text-turquoise" aria-hidden />
                   <a

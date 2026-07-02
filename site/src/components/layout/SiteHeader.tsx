@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, Phone } from "lucide-react";
+import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site";
 import { navLinks } from "@/content/nav";
@@ -70,14 +70,6 @@ export function SiteHeader() {
               ))}
             </nav>
             <div className="mt-auto flex flex-col gap-3 border-t border-blush-deep/60 px-6 py-6">
-              <a
-                href={siteConfig.phoneHref}
-                className="inline-flex items-center gap-2 text-base font-semibold text-charcoal"
-              >
-                <Phone className="size-5 text-turquoise" aria-hidden />
-                {siteConfig.phone}
-              </a>
-              <p className="text-sm text-muted-foreground">{siteConfig.phoneNote}</p>
               <SheetClose
                 nativeButton={false}
                 render={

@@ -11,7 +11,6 @@ export function JsonLd() {
     name: siteConfig.legalName,
     description: siteConfig.description,
     url: siteConfig.url,
-    telephone: siteConfig.phone,
     email: siteConfig.email,
     image: `${siteConfig.url}${siteConfig.ogImage}`,
     servesCuisine: "Italian",

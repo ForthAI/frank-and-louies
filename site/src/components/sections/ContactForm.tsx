@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { siteConfig } from "@/lib/site";
 import {
   CONTACT_TOPICS,
   DEFAULT_TOPIC,
@@ -83,12 +82,7 @@ export function ContactForm() {
       <div className="rounded-3xl bg-blush p-8 text-center sm:p-10">
         <h3 className="display-md text-turquoise-deep">Grazie!</h3>
         <p className="mt-3 text-muted-foreground text-pretty">
-          Thanks for reaching out — we&apos;ll get back to you soon. Hungry now?
-          Give us a call at{" "}
-          <a href={siteConfig.phoneHref} className="font-semibold text-turquoise-deep underline">
-            {siteConfig.phone}
-          </a>
-          .
+          Thanks for reaching out — we&apos;ll get back to you soon.
         </p>
         <button
           type="button"
@@ -183,14 +177,6 @@ export function ContactForm() {
       >
         {submitting ? "Sending…" : "Send Message"}
       </button>
-
-      <p className="text-xs text-muted-foreground">
-        Prefer the phone? Call{" "}
-        <a href={siteConfig.phoneHref} className="font-semibold text-turquoise-deep">
-          {siteConfig.phone}
-        </a>{" "}
-        — {siteConfig.phoneNote.toLowerCase()}.
-      </p>
     </form>
   );
 }

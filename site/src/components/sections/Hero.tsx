@@ -2,8 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useScroll, useMotionValueEvent, useReducedMotion } from "framer-motion";
-import { Phone } from "lucide-react";
-import { siteConfig } from "@/lib/site";
 import { hero } from "@/content/story";
 import { Cta } from "@/components/brand/Cta";
 import { FadeUp } from "@/components/brand/Motion";
@@ -88,16 +86,6 @@ export function Hero() {
         <Cta href={hero.secondaryCta.href} size="lg" variant="outline">
           {hero.secondaryCta.label}
         </Cta>
-      </FadeUp>
-
-      <FadeUp delay={0.3}>
-        <a
-          href={siteConfig.phoneHref}
-          className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-charcoal/70 transition-colors hover:text-turquoise-deep"
-        >
-          <Phone className="size-4 text-turquoise" aria-hidden />
-          {siteConfig.phone}
-        </a>
       </FadeUp>
     </div>
   );

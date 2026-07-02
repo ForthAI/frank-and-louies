@@ -12,10 +12,6 @@ export const siteConfig = {
   url: "https://frankandlouies.com",
   ogImage: "/og.png",
 
-  phone: "302-227-5777",
-  phoneHref: "tel:+13022275777",
-  phoneNote: "Stop in or give us a call",
-
   email: "FrankandLouiesRB@gmail.com",
   emailHref: "mailto:FrankandLouiesRB@gmail.com",
 
