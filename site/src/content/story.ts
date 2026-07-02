@@ -17,7 +17,7 @@ export const hero = {
 
 export const storyIntro = {
   eyebrow: "Our Story",
-  headline: "Two brothers, one Mom, and a whole lot of butter.",
+  headline: "Two brothers, and a whole lot of love.",
   lead: "Frank and Louie are the two faces you see on everything we make. For twelve years, with Mom (Diane) and Robin, we've built Rehoboth Beach's go-to Italian bakery and specialty shop one recipe at a time.",
   paragraphs: [
     "It started in Campobello di Mazara, Sicily — where Mom and Grandmom's love of baking was born, and where a strong family bond was forged over flour and butter. Those recipes crossed an ocean and landed right here in Delaware.",
