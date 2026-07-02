@@ -50,7 +50,7 @@ export function StorySection() {
 
           <Reveal delay={80}>
             <span className="eyebrow mt-6 block text-coral">{storyIntro.eyebrow}</span>
-            <h2 className="mt-3 display-md text-charcoal text-balance">
+            <h2 className="mt-3 display-md text-balance text-charcoal sm:text-3xl">
               {storyIntro.headline}
             </h2>
           </Reveal>
