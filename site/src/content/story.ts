@@ -21,16 +21,15 @@ export const storyIntro = {
   lead: "Frank and Louie are the two faces you see on everything we make. For twelve years, with Mom (Diane) and Robin, we've built Rehoboth Beach's go-to Italian bakery and specialty shop one recipe at a time.",
   paragraphs: [
     "It started in Campobello di Mazara, Sicily — where Mom and Grandmom's love of baking was born, and where a strong family bond was forged over flour and butter. Those recipes crossed an ocean and landed right here in Delaware.",
-    "Everything still starts with those recipes and a refusal to cut corners. The sauce simmers low. The cookies are all butter. The bread gets its crust the hard way. And the Buttercake? Created in the kitchen of our little specialty store, right here in Rehoboth Beach.",
-    "We're proud to be a Delaware original. Today we bake out of our kitchen at The Brush Factory in Lewes, our Buttercakes ship by the case anywhere you are, and there's always something new coming out of the oven. Same family. Same butter. More to go around.",
+    "Everything still starts with those recipes and a refusal to cut corners.",
   ],
 };
 
 export const family = [
-  { name: "Frank", role: "Brother", note: "Talks with his hands. Tastes everything twice." },
-  { name: "Louie", role: "Brother", note: "Swears his half of the recipe is the good half." },
-  { name: "Diane", role: "Mom", note: "Keeper of Mamma Bascio's recipes. The boss." },
-  { name: "Robin", role: "Family", note: "Keeps the brothers in line — mostly." },
+  { name: "Frank", note: "Talks with his hands. Tastes everything twice." },
+  { name: "Louie", note: "Swears his half of the recipe is the good half." },
+  { name: "Diane", note: "Keeper of Mamma Bascio's recipes. The boss." },
+  { name: "Robin", note: "Keeps the brothers in line — mostly." },
 ];
 
 export const nextChapter = {

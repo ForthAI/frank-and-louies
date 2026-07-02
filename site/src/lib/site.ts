@@ -28,7 +28,7 @@ export const siteConfig = {
     {
       id: "brush-factory",
       name: "The Brush Factory",
-      kicker: "Bakery & kitchen · Lewes",
+      kicker: "Retail store · Lewes",
       street: "Kings Highway",
       city: "Lewes",
       state: "DE",

@@ -79,9 +79,6 @@ export function StorySection() {
                   <p className="mt-2 font-display text-base font-bold text-charcoal">
                     {member.name}
                   </p>
-                  <p className="text-xs font-semibold tracking-wide text-turquoise-deep uppercase">
-                    {member.role}
-                  </p>
                 </li>
               ))}
             </ul>
