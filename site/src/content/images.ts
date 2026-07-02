@@ -17,10 +17,13 @@ export const images = {
   buttercakeCut: "/photos/cutouts/buttercake-cut.webp",
   buttercakeWedge: "/photos/cutouts/buttercake-wedge.webp",
 
-  // Story / family (interim stand-ins until the brothers' cutout arrives)
-  storyFamily: "/interim/family-mom-brothers.jpg",
+  // Story / family — the real photo behind the counter
+  storyFamily: "/photos/family.webp",
   storyBrothers: "/interim/brush-factory.jpg",
   familyGroup: "/interim/family-group.jpg",
+
+  // Italian pantry staples — transparent cutout of imported goods
+  pantryStaples: "/photos/cutouts/pantry-staples.webp",
 
   // Product cutouts (null → branded placeholder)
   productButtercakes: "/photos/cutouts/buttercake-vanilla.webp",

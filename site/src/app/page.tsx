@@ -2,6 +2,7 @@ import { IntroSequence } from "@/components/intro/IntroSequence";
 import { Hero } from "@/components/sections/Hero";
 import { StorySection } from "@/components/sections/StorySection";
 import { ProductRows } from "@/components/sections/ProductRows";
+import { ItalianPantry } from "@/components/sections/ItalianPantry";
 import { LocationsSection } from "@/components/sections/LocationsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -22,6 +23,7 @@ export default function HomePage() {
       <Hero />
       <StorySection />
       <ProductRows />
+      <ItalianPantry />
       <LocationsSection />
       <ContactSection />
       <CtaBand />

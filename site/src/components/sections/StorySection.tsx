@@ -13,12 +13,12 @@ export function StorySection() {
         <Reveal className="relative order-2 lg:order-1">
           <SmartImage
             src={images.storyFamily}
-            alt="Diane (Mom) with brothers Frank and Louie behind the counter"
+            alt="Frank, Louie and Robin behind the counter at Frank & Louie's"
             label="The Family"
             tone="turquoise"
             sizes="(min-width: 1024px) 45vw, 90vw"
-            className="aspect-[4/5] w-full max-w-md rounded-[1.75rem] shadow-[0_40px_80px_-32px_rgba(43,43,43,0.4)] ring-1 ring-black/5"
-            objectPosition="center top"
+            className="aspect-[4/3] w-full max-w-md rounded-[1.75rem] shadow-[0_40px_80px_-32px_rgba(43,43,43,0.4)] ring-1 ring-black/5"
+            objectPosition="center"
           />
           <div className="absolute -right-2 -bottom-8 w-44 rotate-3 sm:-right-8 sm:w-52">
             <SmartImage
