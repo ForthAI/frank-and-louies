@@ -18,7 +18,7 @@ export function LocationsSection() {
           <FacesMark className="size-10 text-cream" />
           <span className="eyebrow mt-4 text-cream/85">Where to Find Us</span>
           <h2 className="mt-3 display-lg text-cream text-balance">
-            Two places to get Frank &amp; Louie&apos;s
+            Where to get Frank &amp; Louie&apos;s
           </h2>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-cream/90 text-pretty">
             Come say hi, grab a Buttercake, and take home a jar of sauce. We&apos;d
