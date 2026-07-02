@@ -1,5 +1,6 @@
 import { Mail } from "lucide-react";
 import { siteConfig } from "@/lib/site";
+import { Cta } from "@/components/brand/Cta";
 import { Reveal } from "@/components/brand/Reveal";
 import { FacesMark } from "@/components/brand/FacesMark";
 import { LocationCard } from "./LocationCard";
@@ -34,7 +35,25 @@ export function LocationsSection() {
           ))}
         </div>
 
-        <Reveal className="mt-10 flex justify-center">
+        {/* Wholesale / retailer call-out */}
+        <Reveal className="mt-12">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 rounded-3xl bg-cream/[0.12] p-8 text-center ring-1 ring-cream/25 backdrop-blur-sm sm:p-10">
+            <span className="eyebrow text-cream/85">For Shops &amp; Retailers</span>
+            <h3 className="display-md text-cream text-balance">
+              Want to carry Frank &amp; Louie&apos;s?
+            </h3>
+            <p className="max-w-xl leading-relaxed text-cream/90 text-pretty">
+              Shops, markets and caf&eacute;s — if you&apos;d like to put our
+              stuff on your shelves, let&apos;s talk. We&apos;d love to make your
+              customers regulars.
+            </p>
+            <Cta href="#contact" variant="white" size="lg">
+              Become a Retailer
+            </Cta>
+          </div>
+        </Reveal>
+
+        <Reveal className="mt-8 flex justify-center">
           <a
             href={`${siteConfig.emailHref}?subject=${encodeURIComponent("Shipping a case of Buttercakes")}`}
             className="inline-flex items-center gap-2 rounded-full bg-cream/15 px-6 py-3 text-sm font-semibold text-cream ring-1 ring-cream/30 backdrop-blur-sm transition-colors hover:bg-cream/25"
