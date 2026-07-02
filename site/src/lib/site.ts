@@ -26,6 +26,21 @@ export const siteConfig = {
 
   locations: [
     {
+      id: "brush-factory",
+      name: "The Brush Factory",
+      kicker: "Bakery & kitchen · Lewes",
+      street: "Kings Highway",
+      city: "Lewes",
+      state: "DE",
+      zip: "",
+      blurb:
+        "Our retail store is inside the Brush Factory on Kings Highway in Lewes — where you can pick up Buttercakes, breads, cookies and sauces.",
+      mapsUrl:
+        "https://www.google.com/maps/search/?api=1&query=Brush+Factory+Kings+Highway+Lewes+DE",
+      website: "",
+      websiteLabel: "",
+    },
+    {
       id: "pazzo",
       name: "Pazzo Italiano",
       kicker: "Italian market · Baltimore Ave",
@@ -37,21 +52,6 @@ export const siteConfig = {
         "Find Frank & Louie's favorites at this walk-in Italian market on Baltimore Avenue in Rehoboth Beach.",
       mapsUrl:
         "https://www.google.com/maps/search/?api=1&query=58+Baltimore+Avenue+Rehoboth+Beach+DE",
-      website: "https://www.eatpazzo.com/",
-      websiteLabel: "eatpazzo.com",
-    },
-    {
-      id: "brush-factory",
-      name: "The Brush Factory",
-      kicker: "Bakery & kitchen · Lewes",
-      street: "Kings Highway",
-      city: "Lewes",
-      state: "DE",
-      zip: "",
-      blurb:
-        "Our bakery and kitchen on Kings Highway in Lewes — where the Buttercakes, breads, cookies and sauces are made fresh.",
-      mapsUrl:
-        "https://www.google.com/maps/search/?api=1&query=Brush+Factory+Kings+Highway+Lewes+DE",
       website: "",
       websiteLabel: "",
     },
