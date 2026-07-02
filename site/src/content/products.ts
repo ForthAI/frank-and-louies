@@ -25,7 +25,7 @@ export type FeaturedProduct = {
 export const featuredProducts: FeaturedProduct[] = [
   {
     id: "sauce",
-    name: "Pasta Sauce™",
+    name: "Pasta Sauce",
     tagline: "Mom's recipe, jarred",
     description:
       "Slow-simmered with Romano the way Mom taught us — no shortcuts, nothing you can't pronounce. Grab a jar and put dinner on easy mode.",
@@ -35,7 +35,7 @@ export const featuredProducts: FeaturedProduct[] = [
   },
   {
     id: "breads",
-    name: "Breads™",
+    name: "Breads",
     tagline: "Fresh from the oven",
     description:
       "Rustic loaves baked fresh every single morning — pillowy inside, a crust that actually crackles. What's coming out of the oven changes with the day, so come see what's still warm.",
@@ -45,7 +45,7 @@ export const featuredProducts: FeaturedProduct[] = [
   },
   {
     id: "cookies",
-    name: "Cookies™",
+    name: "Cookies",
     tagline: "The case you can't walk past",
     description:
       "All-butter, made the old way — the tray everybody fights over at the holidays. The lineup's always changing, which is just our excuse to bake a new favorite every week.",
@@ -55,7 +55,7 @@ export const featuredProducts: FeaturedProduct[] = [
   },
   {
     id: "buttercakes",
-    name: "Buttercakes™",
+    name: "Buttercakes",
     tagline: "The signature",
     description:
       "A little cake with a big mouth — golden pound-cake outside, a creamy center that bubbles over as it bakes. The thing people plan their week around. We'll ship a case anywhere you are.",
