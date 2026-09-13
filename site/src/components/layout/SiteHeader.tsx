@@ -82,16 +82,8 @@ export function SiteHeader() {
           </SheetContent>
         </Sheet>
 
-        {/*
-          Center — logo. Large at the top of the page (overflows down onto the
-          hero), shrinks to compact on scroll. Absolutely centered so the intro
-          badge can fly straight up into it. data-nav-logo lets the intro read
-          its position for a precise handoff.
-        */}
-        <div
-          data-nav-logo
-          className="pointer-events-none absolute left-1/2 top-3 -translate-x-1/2"
-        >
+        {/* Center — logo, absolutely centered and overflowing down onto the hero. */}
+        <div className="pointer-events-none absolute left-1/2 top-3 -translate-x-1/2">
           <Link
             href="/"
             aria-label={`${siteConfig.name} — home`}

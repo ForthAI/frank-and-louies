@@ -219,19 +219,3 @@
     }
   }
 }
-
-/* ── Scroll-intro gating ─────────────────────────────────────
-   The intro plays once per session. An inline script in the home page sets
-   data-intro-skip (returning / reduced-motion → hide it before paint, no flash)
-   or data-intro-playing (first visit → hide the nav until the badge flies up). */
-html[data-intro-skip] .fl-intro {
-  display: none;
-}
-html[data-intro-playing] header {
-  opacity: 0;
-  pointer-events: none;
-}
-/* Hide the nav's own logo until the flying badge has landed (one logo, no double). */
-html[data-intro-active] [data-nav-logo] {
-  opacity: 0;
-}
