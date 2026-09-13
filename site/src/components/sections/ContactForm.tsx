@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { ChevronDown } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import {
@@ -147,24 +148,30 @@ export function ContactForm() {
           />
         </Field>
         <Field label="What's this about?" htmlFor="topic">
-          <select
-            id="topic"
-            name="topic"
-            value={topic}
-            onChange={(e) => setTopic(e.target.value as ContactTopic)}
-            className={cn(
-              fieldClass,
-              "w-full cursor-pointer appearance-none bg-no-repeat pl-3.5 pr-12 font-medium text-charcoal transition-colors hover:border-turquoise/60",
-              "bg-[length:1.5rem] bg-[right_0.7rem_center]",
-              "bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2211%22 fill=%22%23009cb7%22/><polyline points=%227 10 12 15 17 10%22 fill=%22none%22 stroke=%22%23ffffff%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>')]",
-            )}
-          >
-            {CONTACT_TOPICS.map((t) => (
-              <option key={t.value} value={t.value}>
-                {t.label}
-              </option>
-            ))}
-          </select>
+          <div className="relative">
+            <select
+              id="topic"
+              name="topic"
+              value={topic}
+              onChange={(e) => setTopic(e.target.value as ContactTopic)}
+              className={cn(
+                fieldClass,
+                "w-full cursor-pointer appearance-none pl-3.5 pr-14 font-medium text-charcoal transition-colors hover:border-turquoise/60",
+              )}
+            >
+              {CONTACT_TOPICS.map((t) => (
+                <option key={t.value} value={t.value}>
+                  {t.label}
+                </option>
+              ))}
+            </select>
+            {/* Obvious dropdown affordance — clicks pass through to the select */}
+            <span className="pointer-events-none absolute inset-y-0 right-2.5 flex items-center">
+              <span className="flex size-7 items-center justify-center rounded-full bg-turquoise text-cream">
+                <ChevronDown className="size-4" strokeWidth={2.5} aria-hidden />
+              </span>
+            </span>
+          </div>
         </Field>
       </div>
 
