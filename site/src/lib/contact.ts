@@ -1,10 +1,10 @@
 /** Shared contact-form contract (used by the form and the API route). */
 
 export const CONTACT_TOPICS = [
-  { value: "general", label: "General question" },
-  { value: "visit", label: "Visiting / retail" },
+  { value: "general", label: "General inquiry" },
+  { value: "shipping", label: "Send me a case of Buttercakes" },
   { value: "wholesale", label: "Wholesale & supply" },
-  { value: "shipping", label: "Ship a case of Buttercakes" },
+  { value: "visit", label: "Visiting the shop" },
 ] as const;
 
 export type ContactTopic = (typeof CONTACT_TOPICS)[number]["value"];
@@ -16,7 +16,7 @@ export function isTopic(value: unknown): value is ContactTopic {
 }
 
 export function topicLabel(value: string): string {
-  return CONTACT_TOPICS.find((t) => t.value === value)?.label ?? "General question";
+  return CONTACT_TOPICS.find((t) => t.value === value)?.label ?? "General inquiry";
 }
 
 export type ContactPayload = {

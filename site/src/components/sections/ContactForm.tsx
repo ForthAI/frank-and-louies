@@ -74,12 +74,12 @@ export function ContactForm() {
         return;
       }
       if (res.status === 503 || data.error === "not_configured") {
-        toast.error("Our form isn't live yet — please call or email us directly.");
+        toast.error("Our form isn't live yet — please email us directly.");
         return;
       }
-      toast.error("Something went wrong — please call or email us directly.");
+      toast.error("Something went wrong — please email us directly.");
     } catch {
-      toast.error("Network error — please call or email us directly.");
+      toast.error("Network error — please email us directly.");
     } finally {
       setSubmitting(false);
     }
