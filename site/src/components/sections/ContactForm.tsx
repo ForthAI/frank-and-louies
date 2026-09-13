@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
@@ -28,6 +28,14 @@ export function ContactForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+
+  // Sync the topic when arriving via a ?topic= link (e.g. the "Become a
+  // Retailer" CTA) — needed because this is a single page and the form doesn't
+  // remount on an in-page click.
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (isTopic(urlTopic)) setTopic(urlTopic);
+  }, [urlTopic]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

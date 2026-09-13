@@ -47,7 +47,7 @@ export function LocationsSection() {
               stuff on your shelves, let&apos;s talk. We&apos;d love to make your
               customers regulars.
             </p>
-            <Cta href="#contact" variant="white" size="lg">
+            <Cta href="/?topic=wholesale#contact" variant="white" size="lg">
               Become a Retailer
             </Cta>
           </div>
