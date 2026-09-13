@@ -3,7 +3,6 @@ import { images } from "@/content/images";
 import { Reveal } from "@/components/brand/Reveal";
 import { SmartImage } from "@/components/brand/SmartImage";
 import { SpeechBubble } from "@/components/brand/SpeechBubble";
-import { FacesMark } from "@/components/brand/FacesMark";
 
 export function StorySection() {
   return (
@@ -31,10 +30,6 @@ export function StorySection() {
               objectPosition="center top"
             />
           </div>
-          <FacesMark
-            aria-hidden
-            className="absolute -top-7 -left-6 size-16 -rotate-6 text-turquoise/15"
-          />
         </Reveal>
 
         {/* Copy */}
@@ -75,8 +70,7 @@ export function StorySection() {
                   key={member.name}
                   className="rounded-2xl bg-blush p-4 text-center"
                 >
-                  <FacesMark className="mx-auto size-7 text-turquoise" />
-                  <p className="mt-2 font-display text-base font-bold text-charcoal">
+                  <p className="font-display text-base font-bold text-charcoal">
                     {member.name}
                   </p>
                 </li>

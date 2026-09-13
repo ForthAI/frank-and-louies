@@ -61,7 +61,6 @@ export function Hero() {
   const copy = (
     <div className="flex flex-col items-start">
       <FadeUp className="flex items-center gap-2">
-        <FacesMark className="size-5 text-turquoise" />
         <span className="eyebrow text-turquoise-deep">{hero.eyebrow}</span>
       </FadeUp>
 

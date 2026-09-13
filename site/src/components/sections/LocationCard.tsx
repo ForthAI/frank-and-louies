@@ -2,7 +2,6 @@ import { ExternalLink, MapPin, Navigation } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { SiteLocation } from "@/lib/site";
 import { Cta } from "@/components/brand/Cta";
-import { FacesMark } from "@/components/brand/FacesMark";
 
 export function LocationCard({
   location,
@@ -25,14 +24,9 @@ export function LocationCard({
         className,
       )}
     >
-      <div className="flex items-center gap-3">
-        <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-turquoise">
-          <FacesMark className="size-7 text-cream" />
-        </span>
-        <div>
-          <h3 className="font-display text-2xl font-bold text-charcoal">{location.name}</h3>
-          <p className="text-sm font-semibold text-turquoise-deep">{location.kicker}</p>
-        </div>
+      <div>
+        <h3 className="font-display text-2xl font-bold text-charcoal">{location.name}</h3>
+        <p className="text-sm font-semibold text-turquoise-deep">{location.kicker}</p>
       </div>
 
       <p className="mt-5 flex items-start gap-2 text-sm font-medium text-charcoal/80">

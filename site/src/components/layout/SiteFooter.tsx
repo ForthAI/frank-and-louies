@@ -3,7 +3,6 @@ import { Mail, MapPin } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 import { footerLinks } from "@/content/nav";
 import { Logo } from "@/components/brand/Logo";
-import { FacesMark } from "@/components/brand/FacesMark";
 import { FacebookIcon, InstagramIcon } from "@/components/brand/SocialIcons";
 
 export function SiteFooter() {
@@ -91,10 +90,7 @@ export function SiteFooter() {
 
       <div className="border-t border-blush-deep/60">
         <div className="container-fl flex flex-col items-center justify-between gap-3 py-6 text-xs text-muted-foreground sm:flex-row">
-          <p className="flex items-center gap-2">
-            <FacesMark className="size-4 text-turquoise/70" />
-            © {year} {siteConfig.legalName}. All rights reserved.
-          </p>
+          <p>© {year} {siteConfig.legalName}. All rights reserved.</p>
           <p className="font-display text-base font-bold text-turquoise-deep">From our family to yours.</p>
         </div>
       </div>

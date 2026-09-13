@@ -2,7 +2,6 @@ import { Mail } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 import { Cta } from "@/components/brand/Cta";
 import { Reveal } from "@/components/brand/Reveal";
-import { FacesMark } from "@/components/brand/FacesMark";
 import { LocationCard } from "./LocationCard";
 
 export function LocationsSection() {
@@ -16,8 +15,7 @@ export function LocationsSection() {
 
       <div className="container-fl relative">
         <Reveal className="flex flex-col items-center text-center">
-          <FacesMark className="size-10 text-cream" />
-          <span className="eyebrow mt-4 text-cream/85">Where to Find Us</span>
+          <span className="eyebrow text-cream/85">Where to Find Us</span>
           <h2 className="mt-3 display-lg text-cream text-balance">
             Where to get Frank &amp; Louie&apos;s
           </h2>
