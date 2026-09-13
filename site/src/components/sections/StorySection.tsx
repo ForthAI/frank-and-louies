@@ -1,8 +1,7 @@
-import { storyIntro, family, banter } from "@/content/story";
+import { storyIntro, family } from "@/content/story";
 import { images } from "@/content/images";
 import { Reveal } from "@/components/brand/Reveal";
 import { SmartImage } from "@/components/brand/SmartImage";
-import { SpeechBubble } from "@/components/brand/SpeechBubble";
 
 export function StorySection() {
   return (
@@ -34,16 +33,7 @@ export function StorySection() {
 
         {/* Copy */}
         <div className="order-1 lg:order-2">
-          <Reveal className="flex items-center gap-3">
-            <SpeechBubble from="frank" tail="left">
-              {banter.intro.frank}
-            </SpeechBubble>
-            <SpeechBubble from="louie" tail="left">
-              {banter.intro.louie}
-            </SpeechBubble>
-          </Reveal>
-
-          <Reveal delay={80}>
+          <Reveal>
             <span className="eyebrow mt-6 block text-coral">{storyIntro.eyebrow}</span>
             <h2 className="mt-3 display-md text-balance text-charcoal sm:text-3xl">
               {storyIntro.headline}
