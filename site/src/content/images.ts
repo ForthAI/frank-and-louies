@@ -47,3 +47,11 @@ export const sauceJars = [
   "/photos/cutouts/sauce-spicy.webp",
   "/photos/cutouts/sauce-blush.webp",
 ] as const;
+
+/** Bread loaves (transparent cutouts) for the rotating Breads scene.
+ *  Add asiago/kalamata/sesame here once their backgrounds are removed. */
+export const breadLoaves = [
+  "/photos/cutouts/bread-baguette.webp",
+  "/photos/cutouts/bread-chocolate.webp",
+  "/photos/cutouts/bread-prosciutto.webp",
+] as const;

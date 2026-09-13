@@ -2,7 +2,7 @@ import Image from "next/image";
 import { ArrowRight, Truck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { featuredProducts, type AccentColor } from "@/content/products";
-import { images } from "@/content/images";
+import { images, breadLoaves } from "@/content/images";
 import { Cta } from "@/components/brand/Cta";
 import { FadeUp, Parallax } from "@/components/brand/Motion";
 import { SectionHeading } from "@/components/brand/SectionHeading";
@@ -10,6 +10,7 @@ import { SmartImage } from "@/components/brand/SmartImage";
 import { SpeechBubble } from "@/components/brand/SpeechBubble";
 import { SauceConverge } from "@/components/sections/SauceConverge";
 import { ButtercakeReveal } from "@/components/sections/ButtercakeReveal";
+import { BreadRotator } from "@/components/sections/BreadRotator";
 
 const accentText: Record<AccentColor, string> = {
   turquoise: "text-turquoise-deep",
@@ -106,6 +107,12 @@ export function ProductRows() {
                     />
                     {banterNode}
                   </div>
+                ) : product.id === "breads" ? (
+                  // Floating loaf that crossfades through the varieties.
+                  <Parallax amount={28} className={cn("relative", flip && "lg:order-2")}>
+                    <BreadRotator images={breadLoaves} accent={product.accent} />
+                    {banterNode}
+                  </Parallax>
                 ) : (
                   <Parallax amount={30} className={cn("relative", flip && "lg:order-2")}>
                     {src ? (
