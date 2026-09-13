@@ -41,7 +41,7 @@ export const featuredProducts: FeaturedProduct[] = [
       "Rustic loaves baked fresh every single morning — pillowy inside, a crust that actually crackles. What's coming out of the oven changes with the day, so come see what's still warm.",
     accent: "brown",
     image: "productBreads",
-    banter: { frank: "Smell that?", louie: "That's breakfast, Frankie." },
+    banter: { frank: "Smell that?", louie: "That's crusty, Louie!" },
   },
   {
     id: "cookies",
