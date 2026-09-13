@@ -154,8 +154,9 @@ export function ContactForm() {
             onChange={(e) => setTopic(e.target.value as ContactTopic)}
             className={cn(
               fieldClass,
-              "w-full appearance-none bg-[length:1.1rem] bg-[right_0.85rem_center] bg-no-repeat px-3.5",
-              "bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23715f5d%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22/></svg>')]",
+              "w-full cursor-pointer appearance-none bg-no-repeat pl-3.5 pr-12 font-medium text-charcoal transition-colors hover:border-turquoise/60",
+              "bg-[length:1.5rem] bg-[right_0.7rem_center]",
+              "bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2211%22 fill=%22%23009cb7%22/><polyline points=%227 10 12 15 17 10%22 fill=%22none%22 stroke=%22%23ffffff%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>')]",
             )}
           >
             {CONTACT_TOPICS.map((t) => (
