@@ -19,7 +19,7 @@ export const images = {
 
   // Story / family — the real photo behind the counter
   storyFamily: "/photos/family.webp",
-  storyBrothers: "/interim/brush-factory.jpg",
+  storyBrothers: "/photos/story-kitchen.webp",
   familyGroup: "/interim/family-group.jpg",
 
   // Italian pantry staples — transparent cutout of imported goods

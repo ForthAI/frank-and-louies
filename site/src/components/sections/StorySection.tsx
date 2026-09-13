@@ -21,12 +21,12 @@ export function StorySection() {
           <div className="absolute -right-2 -bottom-8 w-44 rotate-3 sm:-right-8 sm:w-52">
             <SmartImage
               src={images.storyBrothers}
-              alt="Brothers Frank and Louie"
-              label="Frank & Louie"
+              alt="Frank & Louie's pasta sauces in the kitchen"
+              label="Our Sauces"
               tone="coral"
               sizes="13rem"
               className="aspect-square w-full rounded-2xl border-4 border-white shadow-xl"
-              objectPosition="center top"
+              objectPosition="center"
             />
           </div>
         </Reveal>
