@@ -4,7 +4,6 @@ import { ProductRows } from "@/components/sections/ProductRows";
 import { ItalianPantry } from "@/components/sections/ItalianPantry";
 import { LocationsSection } from "@/components/sections/LocationsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
-import { CtaBand } from "@/components/sections/CtaBand";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export default function HomePage() {
@@ -16,7 +15,6 @@ export default function HomePage() {
       <ItalianPantry />
       <LocationsSection />
       <ContactSection />
-      <CtaBand />
       <JsonLd />
     </>
   );

@@ -2,6 +2,7 @@ import { ExternalLink, MapPin, Navigation } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { SiteLocation } from "@/lib/site";
 import { Cta } from "@/components/brand/Cta";
+import { Logo } from "@/components/brand/Logo";
 
 export function LocationCard({
   location,
@@ -24,9 +25,12 @@ export function LocationCard({
         className,
       )}
     >
-      <div>
-        <h3 className="font-display text-2xl font-bold text-charcoal">{location.name}</h3>
-        <p className="text-sm font-semibold text-turquoise-deep">{location.kicker}</p>
+      <div className="flex items-center gap-4">
+        <Logo tone="color" height={52} href={null} className="shrink-0" />
+        <div>
+          <h3 className="font-display text-2xl font-bold text-charcoal">{location.name}</h3>
+          <p className="text-sm font-semibold text-turquoise-deep">{location.kicker}</p>
+        </div>
       </div>
 
       <p className="mt-5 flex items-start gap-2 text-sm font-medium text-charcoal/80">
