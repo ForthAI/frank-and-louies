@@ -8,7 +8,7 @@ export function StorySection() {
     <section id="story" className="scroll-mt-24 bg-white py-20 sm:py-28">
       <div className="container-fl grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
         {/* Image collage */}
-        <Reveal className="relative order-1 lg:order-1">
+        <Reveal className="relative order-1 mb-16 sm:mb-0 lg:order-1">
           <SmartImage
             src={images.storyFamily}
             alt="Frank, Louie and Robin behind the counter at Frank & Louie's"
@@ -18,7 +18,7 @@ export function StorySection() {
             className="aspect-[4/3] w-full max-w-md rounded-[1.75rem] shadow-[0_40px_80px_-32px_rgba(43,43,43,0.4)] ring-1 ring-black/5"
             objectPosition="center"
           />
-          <div className="absolute -right-2 -bottom-8 w-44 rotate-3 sm:-right-8 sm:w-52">
+          <div className="absolute -right-2 -bottom-12 w-36 rotate-3 sm:-right-8 sm:-bottom-8 sm:w-52">
             <SmartImage
               src={images.storyBrothers}
               alt="Frank & Louie's pasta sauces in the kitchen"
