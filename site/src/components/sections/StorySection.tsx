@@ -8,7 +8,7 @@ export function StorySection() {
     <section id="story" className="scroll-mt-24 bg-white py-20 sm:py-28">
       <div className="container-fl grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
         {/* Image collage */}
-        <Reveal className="relative order-2 lg:order-1">
+        <Reveal className="relative order-1 lg:order-1">
           <SmartImage
             src={images.storyFamily}
             alt="Frank, Louie and Robin behind the counter at Frank & Louie's"
@@ -32,7 +32,7 @@ export function StorySection() {
         </Reveal>
 
         {/* Copy */}
-        <div className="order-1 lg:order-2">
+        <div className="order-2 lg:order-2">
           <Reveal>
             <span className="eyebrow mt-6 block text-coral">{storyIntro.eyebrow}</span>
             <h2 className="mt-3 display-md text-balance text-charcoal sm:text-3xl">

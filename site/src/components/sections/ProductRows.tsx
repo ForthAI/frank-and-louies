@@ -61,7 +61,7 @@ function FloatingCutout({
 
 export function ProductRows() {
   return (
-    <section id="products" className="scroll-mt-24 bg-white py-24 sm:py-32">
+    <section id="products" className="scroll-mt-24 overflow-x-clip bg-white py-24 sm:py-32">
       <div className="container-fl">
         <SectionHeading
           eyebrow="What We Make"

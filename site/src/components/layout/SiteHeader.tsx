@@ -95,7 +95,7 @@ export function SiteHeader() {
               width={139}
               height={151}
               priority
-              className="h-24 w-auto origin-top select-none drop-shadow-[0_8px_18px_rgba(0,0,0,0.12)] lg:h-28"
+              className="h-16 w-auto origin-top select-none drop-shadow-[0_8px_18px_rgba(0,0,0,0.12)] sm:h-24 lg:h-28"
             />
           </Link>
         </div>
