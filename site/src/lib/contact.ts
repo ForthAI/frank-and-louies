@@ -19,32 +19,50 @@ export function topicLabel(value: string): string {
   return CONTACT_TOPICS.find((t) => t.value === value)?.label ?? "General inquiry";
 }
 
+/** Whether the mailing address is a home or a business. */
+export type LocationType = "residence" | "business";
+
 export type ContactPayload = {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  phone?: string;
+  phone: string;
   topic: ContactTopic;
-  message: string;
+  /** Mailing address (all optional). */
+  street?: string;
+  city?: string;
+  state?: string;
+  zip?: string;
+  locationType?: LocationType;
+  message?: string;
   /** Honeypot — must be empty. */
   company?: string;
 };
 
 export type ValidationResult =
-  | { ok: true; data: Required<Pick<ContactPayload, "name" | "email" | "topic" | "message">> & ContactPayload }
+  | { ok: true; data: ContactPayload }
   | { ok: false; errors: Record<string, string> };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function validateContact(input: Partial<ContactPayload>): ValidationResult {
   const errors: Record<string, string> = {};
-  const name = (input.name ?? "").trim();
+  const firstName = (input.firstName ?? "").trim();
+  const lastName = (input.lastName ?? "").trim();
   const email = (input.email ?? "").trim();
+  const phone = (input.phone ?? "").trim();
   const message = (input.message ?? "").trim();
   const topic = isTopic(input.topic) ? input.topic : DEFAULT_TOPIC;
+  const locationType =
+    input.locationType === "business" || input.locationType === "residence"
+      ? input.locationType
+      : undefined;
 
-  if (name.length < 2) errors.name = "Please tell us your name.";
+  // Required: first name, last name, email, phone.
+  if (firstName.length < 1) errors.firstName = "Please enter your first name.";
+  if (lastName.length < 1) errors.lastName = "Please enter your last name.";
   if (!EMAIL_RE.test(email)) errors.email = "Please enter a valid email.";
-  if (message.length < 10) errors.message = "A few more words, please.";
+  if (phone.replace(/\D/g, "").length < 7) errors.phone = "Please enter a valid phone number.";
   if (message.length > 4000) errors.message = "That's a bit long — please trim it.";
 
   if (Object.keys(errors).length > 0) return { ok: false, errors };
@@ -52,11 +70,17 @@ export function validateContact(input: Partial<ContactPayload>): ValidationResul
   return {
     ok: true,
     data: {
-      name,
+      firstName,
+      lastName,
       email,
-      phone: (input.phone ?? "").trim() || undefined,
+      phone,
       topic,
-      message,
+      street: (input.street ?? "").trim() || undefined,
+      city: (input.city ?? "").trim() || undefined,
+      state: (input.state ?? "").trim() || undefined,
+      zip: (input.zip ?? "").trim() || undefined,
+      locationType,
+      message: message || undefined,
     },
   };
 }

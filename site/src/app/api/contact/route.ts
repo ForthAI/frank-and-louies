@@ -32,15 +32,33 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, errors: result.errors }, { status: 422 });
   }
 
-  const { name, email, phone, topic, message } = result.data;
-  const subject = `[F&L Website] ${topicLabel(topic)} — ${name}`;
+  const { firstName, lastName, email, phone, topic, street, city, state, zip, locationType, message } =
+    result.data;
+  const fullName = `${firstName} ${lastName}`;
+
+  // Assemble the mailing address (only the parts provided).
+  const cityLine = [city, [state, zip].filter(Boolean).join(" ").trim()]
+    .filter(Boolean)
+    .join(", ");
+  const addressLines = [street, cityLine].filter(Boolean);
+  const addressText = addressLines.length ? addressLines.join("\n") : "—";
+  const locationLabel = locationType
+    ? locationType === "business"
+      ? "Business"
+      : "Residence"
+    : "—";
+
+  const subject = `[F&L Website] ${topicLabel(topic)} — ${fullName}`;
   const text = [
     `Topic: ${topicLabel(topic)}`,
-    `Name: ${name}`,
+    `Name: ${fullName}`,
     `Email: ${email}`,
-    `Phone: ${phone ?? "—"}`,
+    `Phone: ${phone}`,
+    `Address type: ${locationLabel}`,
+    `Mailing address:`,
+    addressText,
     "",
-    message,
+    message ?? "(no message)",
   ].join("\n");
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -55,10 +73,7 @@ export async function POST(request: Request) {
       console.info("[contact] RESEND_API_KEY not set — submission (dev only):\n", text);
       return NextResponse.json({ ok: true, delivered: false });
     }
-    return NextResponse.json(
-      { ok: false, error: "not_configured" },
-      { status: 503 },
-    );
+    return NextResponse.json({ ok: false, error: "not_configured" }, { status: 503 });
   }
 
   try {
@@ -72,11 +87,13 @@ export async function POST(request: Request) {
       html: `<div style="font-family:system-ui,sans-serif;line-height:1.6">
         <h2 style="margin:0 0 12px">New website inquiry</h2>
         <p><strong>Topic:</strong> ${escapeHtml(topicLabel(topic))}</p>
-        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Name:</strong> ${escapeHtml(fullName)}</p>
         <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-        <p><strong>Phone:</strong> ${escapeHtml(phone ?? "—")}</p>
+        <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
+        <p><strong>Address type:</strong> ${escapeHtml(locationLabel)}</p>
+        <p><strong>Mailing address:</strong><br>${escapeHtml(addressText).replace(/\n/g, "<br>")}</p>
         <hr style="border:none;border-top:1px solid #eee;margin:16px 0" />
-        <p style="white-space:pre-wrap">${escapeHtml(message)}</p>
+        <p style="white-space:pre-wrap">${escapeHtml(message ?? "(no message)")}</p>
       </div>`,
     });
 

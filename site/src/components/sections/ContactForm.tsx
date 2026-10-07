@@ -20,6 +20,11 @@ type Errors = Record<string, string>;
 const fieldClass =
   "h-12 rounded-xl border-input bg-white text-base shadow-none focus-visible:ring-turquoise/40";
 
+const LOCATION_OPTIONS = [
+  { value: "residence", label: "Residence" },
+  { value: "business", label: "Business" },
+] as const;
+
 export function ContactForm() {
   const params = useSearchParams();
   const urlTopic = params.get("topic");
@@ -46,10 +51,16 @@ export function ContactForm() {
     const form = e.currentTarget;
     const fd = new FormData(form);
     const payload = {
-      name: String(fd.get("name") ?? ""),
+      firstName: String(fd.get("firstName") ?? ""),
+      lastName: String(fd.get("lastName") ?? ""),
       email: String(fd.get("email") ?? ""),
       phone: String(fd.get("phone") ?? ""),
       topic: String(fd.get("topic") ?? DEFAULT_TOPIC),
+      street: String(fd.get("street") ?? ""),
+      city: String(fd.get("city") ?? ""),
+      state: String(fd.get("state") ?? ""),
+      zip: String(fd.get("zip") ?? ""),
+      locationType: String(fd.get("locationType") ?? ""),
       message: String(fd.get("message") ?? ""),
       company: String(fd.get("company") ?? ""), // honeypot
     };
@@ -112,17 +123,32 @@ export function ContactForm() {
         <input id="company" name="company" tabIndex={-1} autoComplete="off" />
       </div>
 
+      {/* Name */}
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Name" htmlFor="name" error={errors.name} required>
+        <Field label="First name" htmlFor="firstName" error={errors.firstName} required>
           <Input
-            id="name"
-            name="name"
-            autoComplete="name"
-            placeholder="Your name"
-            aria-invalid={!!errors.name}
+            id="firstName"
+            name="firstName"
+            autoComplete="given-name"
+            placeholder="Frank"
+            aria-invalid={!!errors.firstName}
             className={fieldClass}
           />
         </Field>
+        <Field label="Last name" htmlFor="lastName" error={errors.lastName} required>
+          <Input
+            id="lastName"
+            name="lastName"
+            autoComplete="family-name"
+            placeholder="Bascio"
+            aria-invalid={!!errors.lastName}
+            className={fieldClass}
+          />
+        </Field>
+      </div>
+
+      {/* Email + Phone (both required) */}
+      <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Email" htmlFor="email" error={errors.email} required>
           <Input
             id="email"
@@ -134,52 +160,126 @@ export function ContactForm() {
             className={fieldClass}
           />
         </Field>
-      </div>
-
-      <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Phone" htmlFor="phone" hint="Optional">
+        <Field label="Phone" htmlFor="phone" error={errors.phone} required>
           <Input
             id="phone"
             name="phone"
             type="tel"
             autoComplete="tel"
             placeholder="(302) 555-0123"
+            aria-invalid={!!errors.phone}
             className={fieldClass}
           />
         </Field>
-        <Field label="What's this about?" htmlFor="topic">
-          <div className="relative">
-            <select
-              id="topic"
-              name="topic"
-              value={topic}
-              onChange={(e) => setTopic(e.target.value as ContactTopic)}
-              className={cn(
-                fieldClass,
-                "w-full cursor-pointer appearance-none pl-3.5 pr-14 font-medium text-charcoal transition-colors hover:border-turquoise/60",
-              )}
-            >
-              {CONTACT_TOPICS.map((t) => (
-                <option key={t.value} value={t.value}>
-                  {t.label}
-                </option>
-              ))}
-            </select>
-            {/* Obvious dropdown affordance — clicks pass through to the select */}
-            <span className="pointer-events-none absolute inset-y-0 right-2.5 flex items-center">
-              <span className="flex size-7 items-center justify-center rounded-full bg-turquoise text-cream">
-                <ChevronDown className="size-4" strokeWidth={2.5} aria-hidden />
-              </span>
-            </span>
-          </div>
-        </Field>
       </div>
 
-      <Field label="Message" htmlFor="message" error={errors.message} required>
+      {/* Topic */}
+      <Field label="What's this about?" htmlFor="topic">
+        <div className="relative">
+          <select
+            id="topic"
+            name="topic"
+            value={topic}
+            onChange={(e) => setTopic(e.target.value as ContactTopic)}
+            className={cn(
+              fieldClass,
+              "w-full cursor-pointer appearance-none pl-3.5 pr-14 font-medium text-charcoal transition-colors hover:border-turquoise/60",
+            )}
+          >
+            {CONTACT_TOPICS.map((t) => (
+              <option key={t.value} value={t.value}>
+                {t.label}
+              </option>
+            ))}
+          </select>
+          {/* Obvious dropdown affordance — clicks pass through to the select */}
+          <span className="pointer-events-none absolute inset-y-0 right-2.5 flex items-center">
+            <span className="flex size-7 items-center justify-center rounded-full bg-turquoise text-cream">
+              <ChevronDown className="size-4" strokeWidth={2.5} aria-hidden />
+            </span>
+          </span>
+        </div>
+      </Field>
+
+      {/* Mailing address (optional) */}
+      <fieldset className="flex flex-col gap-5 rounded-2xl border border-blush-deep/60 bg-white/50 p-5">
+        <legend className="px-1 text-sm font-semibold text-charcoal">
+          Mailing address{" "}
+          <span className="font-normal text-muted-foreground">(optional)</span>
+        </legend>
+
+        <Field label="Street address" htmlFor="street">
+          <Input
+            id="street"
+            name="street"
+            autoComplete="street-address"
+            placeholder="123 Rehoboth Ave"
+            className={fieldClass}
+          />
+        </Field>
+
+        <div className="grid gap-5 sm:grid-cols-[1.4fr_0.6fr_0.9fr]">
+          <Field label="City" htmlFor="city">
+            <Input
+              id="city"
+              name="city"
+              autoComplete="address-level2"
+              placeholder="Rehoboth Beach"
+              className={fieldClass}
+            />
+          </Field>
+          <Field label="State" htmlFor="state">
+            <Input
+              id="state"
+              name="state"
+              autoComplete="address-level1"
+              placeholder="DE"
+              maxLength={20}
+              className={fieldClass}
+            />
+          </Field>
+          <Field label="ZIP" htmlFor="zip">
+            <Input
+              id="zip"
+              name="zip"
+              autoComplete="postal-code"
+              inputMode="numeric"
+              placeholder="19971"
+              className={fieldClass}
+            />
+          </Field>
+        </div>
+
+        {/* Business or residence */}
+        <div className="flex flex-col gap-2">
+          <span className="text-sm font-semibold text-charcoal">
+            Is this a business or residence?{" "}
+            <span className="font-normal text-muted-foreground">(optional)</span>
+          </span>
+          <div className="grid grid-cols-2 gap-3">
+            {LOCATION_OPTIONS.map((opt) => (
+              <label key={opt.value} className="cursor-pointer">
+                <input
+                  type="radio"
+                  name="locationType"
+                  value={opt.value}
+                  className="peer sr-only"
+                />
+                <span className="flex h-12 items-center justify-center rounded-xl border border-input bg-white text-base font-medium text-charcoal transition-colors hover:border-turquoise/60 peer-checked:border-turquoise peer-checked:bg-turquoise peer-checked:text-cream peer-focus-visible:ring-4 peer-focus-visible:ring-turquoise/40">
+                  {opt.label}
+                </span>
+              </label>
+            ))}
+          </div>
+        </div>
+      </fieldset>
+
+      {/* Message (optional) */}
+      <Field label="Message" htmlFor="message" error={errors.message} hint="Optional">
         <Textarea
           id="message"
           name="message"
-          rows={6}
+          rows={5}
           placeholder="Tell us what you're after — a case of Buttercakes, wholesale info, a question about visiting…"
           aria-invalid={!!errors.message}
           className="rounded-xl border-input bg-white text-base shadow-none focus-visible:ring-turquoise/40"
@@ -214,7 +314,7 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <div className="flex items-baseline justify-between">
+      <div className="flex items-baseline justify-between gap-2">
         <Label htmlFor={htmlFor} className="text-sm font-semibold text-charcoal">
           {label}
           {required ? <span className="text-coral"> *</span> : null}
