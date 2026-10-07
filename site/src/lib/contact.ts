@@ -1,15 +1,18 @@
 /** Shared contact-form contract (used by the form and the API route). */
 
 export const CONTACT_TOPICS = [
-  { value: "general", label: "General inquiry" },
   { value: "shipping", label: "Send me a case of Buttercakes" },
   { value: "wholesale", label: "Wholesale & supply" },
   { value: "visit", label: "Visiting the shop" },
+  { value: "general", label: "General inquiry" },
 ] as const;
 
 export type ContactTopic = (typeof CONTACT_TOPICS)[number]["value"];
 
-export const DEFAULT_TOPIC: ContactTopic = "general";
+export const DEFAULT_TOPIC: ContactTopic = "shipping";
+
+/** Only these topics collect a mailing address. */
+export const TOPICS_WITH_ADDRESS: ContactTopic[] = ["shipping"];
 
 export function isTopic(value: unknown): value is ContactTopic {
   return CONTACT_TOPICS.some((t) => t.value === value);

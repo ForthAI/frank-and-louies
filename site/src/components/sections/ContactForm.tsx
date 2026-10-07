@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import {
   CONTACT_TOPICS,
   DEFAULT_TOPIC,
+  TOPICS_WITH_ADDRESS,
   isTopic,
   type ContactTopic,
 } from "@/lib/contact";
@@ -182,8 +183,8 @@ export function ContactForm() {
             value={topic}
             onChange={(e) => setTopic(e.target.value as ContactTopic)}
             className={cn(
-              fieldClass,
-              "w-full cursor-pointer appearance-none pl-3.5 pr-14 font-medium text-charcoal transition-colors hover:border-turquoise/60",
+              "h-12 w-full cursor-pointer appearance-none rounded-xl border-2 border-turquoise/50 bg-turquoise/[0.06] pl-3.5 pr-14 text-base font-semibold text-turquoise-deep shadow-none transition-colors",
+              "hover:border-turquoise focus-visible:border-turquoise focus-visible:ring-4 focus-visible:ring-turquoise/30 focus-visible:outline-none",
             )}
           >
             {CONTACT_TOPICS.map((t) => (
@@ -201,8 +202,9 @@ export function ContactForm() {
         </div>
       </Field>
 
-      {/* Mailing address (optional) */}
-      <fieldset className="flex flex-col gap-5 rounded-2xl border border-blush-deep/60 bg-white/50 p-5">
+      {/* Mailing address — shown only for "Send me a case of Buttercakes" */}
+      {TOPICS_WITH_ADDRESS.includes(topic) && (
+        <fieldset className="flex flex-col gap-5 rounded-2xl border border-blush-deep/60 bg-white/50 p-5">
         <legend className="px-1 text-sm font-semibold text-charcoal">
           Mailing address{" "}
           <span className="font-normal text-muted-foreground">(optional)</span>
@@ -272,7 +274,8 @@ export function ContactForm() {
             ))}
           </div>
         </div>
-      </fieldset>
+        </fieldset>
+      )}
 
       {/* Message (optional) */}
       <Field label="Message" htmlFor="message" error={errors.message} hint="Optional">
