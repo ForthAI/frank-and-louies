@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, errors: result.errors }, { status: 422 });
   }
 
-  const { firstName, lastName, email, phone, topic, street, city, state, zip, locationType, message } =
+  const { firstName, lastName, email, phone, topic, businessName, street, city, state, zip, locationType, message } =
     result.data;
   const fullName = `${firstName} ${lastName}`;
 
@@ -46,12 +46,15 @@ export async function POST(request: Request) {
     ? locationType === "business"
       ? "Business"
       : "Residence"
-    : "—";
+    : businessName
+      ? "Business"
+      : "—";
 
   const subject = `[F&L Website] ${topicLabel(topic)} — ${fullName}`;
   const text = [
     `Topic: ${topicLabel(topic)}`,
     `Name: ${fullName}`,
+    ...(businessName ? [`Business: ${businessName}`] : []),
     `Email: ${email}`,
     `Phone: ${phone}`,
     `Address type: ${locationLabel}`,
@@ -88,6 +91,7 @@ export async function POST(request: Request) {
         <h2 style="margin:0 0 12px">New website inquiry</h2>
         <p><strong>Topic:</strong> ${escapeHtml(topicLabel(topic))}</p>
         <p><strong>Name:</strong> ${escapeHtml(fullName)}</p>
+        ${businessName ? `<p><strong>Business:</strong> ${escapeHtml(businessName)}</p>` : ""}
         <p><strong>Email:</strong> ${escapeHtml(email)}</p>
         <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
         <p><strong>Address type:</strong> ${escapeHtml(locationLabel)}</p>

@@ -12,7 +12,13 @@ export type ContactTopic = (typeof CONTACT_TOPICS)[number]["value"];
 export const DEFAULT_TOPIC: ContactTopic = "shipping";
 
 /** Only these topics collect a mailing address. */
-export const TOPICS_WITH_ADDRESS: ContactTopic[] = ["shipping"];
+export const TOPICS_WITH_ADDRESS: ContactTopic[] = ["shipping", "wholesale"];
+
+/** These topics also collect a business name (required). */
+export const TOPICS_WITH_BUSINESS_NAME: ContactTopic[] = ["wholesale"];
+
+/** Only these topics ask whether the address is a business or a residence. */
+export const TOPICS_WITH_LOCATION_TYPE: ContactTopic[] = ["shipping"];
 
 export function isTopic(value: unknown): value is ContactTopic {
   return CONTACT_TOPICS.some((t) => t.value === value);
@@ -31,6 +37,8 @@ export type ContactPayload = {
   email: string;
   phone: string;
   topic: ContactTopic;
+  /** Business name (required for wholesale). */
+  businessName?: string;
   /** Mailing address (all optional). */
   street?: string;
   city?: string;
@@ -56,6 +64,7 @@ export function validateContact(input: Partial<ContactPayload>): ValidationResul
   const phone = (input.phone ?? "").trim();
   const message = (input.message ?? "").trim();
   const topic = isTopic(input.topic) ? input.topic : DEFAULT_TOPIC;
+  const businessName = (input.businessName ?? "").trim();
   const locationType =
     input.locationType === "business" || input.locationType === "residence"
       ? input.locationType
@@ -66,6 +75,8 @@ export function validateContact(input: Partial<ContactPayload>): ValidationResul
   if (lastName.length < 1) errors.lastName = "Please enter your last name.";
   if (!EMAIL_RE.test(email)) errors.email = "Please enter a valid email.";
   if (phone.replace(/\D/g, "").length < 7) errors.phone = "Please enter a valid phone number.";
+  if (TOPICS_WITH_BUSINESS_NAME.includes(topic) && businessName.length < 1)
+    errors.businessName = "Please enter your business name.";
   if (message.length > 4000) errors.message = "That's a bit long — please trim it.";
 
   if (Object.keys(errors).length > 0) return { ok: false, errors };
@@ -78,6 +89,7 @@ export function validateContact(input: Partial<ContactPayload>): ValidationResul
       email,
       phone,
       topic,
+      businessName: businessName || undefined,
       street: (input.street ?? "").trim() || undefined,
       city: (input.city ?? "").trim() || undefined,
       state: (input.state ?? "").trim() || undefined,

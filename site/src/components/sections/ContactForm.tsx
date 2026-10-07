@@ -9,6 +9,8 @@ import {
   CONTACT_TOPICS,
   DEFAULT_TOPIC,
   TOPICS_WITH_ADDRESS,
+  TOPICS_WITH_BUSINESS_NAME,
+  TOPICS_WITH_LOCATION_TYPE,
   isTopic,
   type ContactTopic,
 } from "@/lib/contact";
@@ -57,6 +59,7 @@ export function ContactForm() {
       email: String(fd.get("email") ?? ""),
       phone: String(fd.get("phone") ?? ""),
       topic: String(fd.get("topic") ?? DEFAULT_TOPIC),
+      businessName: String(fd.get("businessName") ?? ""),
       street: String(fd.get("street") ?? ""),
       city: String(fd.get("city") ?? ""),
       state: String(fd.get("state") ?? ""),
@@ -202,12 +205,25 @@ export function ContactForm() {
         </div>
       </Field>
 
-      {/* Mailing address — shown only for "Send me a case of Buttercakes" */}
+      {/* Address block — shown for Buttercakes shipping and wholesale */}
       {TOPICS_WITH_ADDRESS.includes(topic) && (
         <fieldset className="flex flex-col gap-5 rounded-2xl border border-blush-deep/60 bg-white/50 p-5">
         <legend className="px-1 text-sm font-semibold text-charcoal">
-          Mailing address
+          {TOPICS_WITH_BUSINESS_NAME.includes(topic) ? "Business details" : "Mailing address"}
         </legend>
+
+        {TOPICS_WITH_BUSINESS_NAME.includes(topic) && (
+          <Field label="Business name" htmlFor="businessName" error={errors.businessName} required>
+            <Input
+              id="businessName"
+              name="businessName"
+              autoComplete="organization"
+              placeholder="Acme Market"
+              aria-invalid={!!errors.businessName}
+              className={fieldClass}
+            />
+          </Field>
+        )}
 
         <Field label="Street address" htmlFor="street">
           <Input
@@ -251,7 +267,8 @@ export function ContactForm() {
           </Field>
         </div>
 
-        {/* Business or residence */}
+        {/* Business or residence — only where it's meaningful (shipping) */}
+        {TOPICS_WITH_LOCATION_TYPE.includes(topic) && (
         <div className="flex flex-col gap-2">
           <span className="text-sm font-semibold text-charcoal">
             Is this a business or residence?
@@ -272,6 +289,7 @@ export function ContactForm() {
             ))}
           </div>
         </div>
+        )}
         </fieldset>
       )}
 
