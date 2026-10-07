@@ -24,6 +24,69 @@ export function isTopic(value: unknown): value is ContactTopic {
   return CONTACT_TOPICS.some((t) => t.value === value);
 }
 
+/** USPS state / territory codes for the address dropdown. */
+export const US_STATES = [
+  { value: "AL", label: "Alabama" },
+  { value: "AK", label: "Alaska" },
+  { value: "AZ", label: "Arizona" },
+  { value: "AR", label: "Arkansas" },
+  { value: "CA", label: "California" },
+  { value: "CO", label: "Colorado" },
+  { value: "CT", label: "Connecticut" },
+  { value: "DE", label: "Delaware" },
+  { value: "DC", label: "District of Columbia" },
+  { value: "FL", label: "Florida" },
+  { value: "GA", label: "Georgia" },
+  { value: "HI", label: "Hawaii" },
+  { value: "ID", label: "Idaho" },
+  { value: "IL", label: "Illinois" },
+  { value: "IN", label: "Indiana" },
+  { value: "IA", label: "Iowa" },
+  { value: "KS", label: "Kansas" },
+  { value: "KY", label: "Kentucky" },
+  { value: "LA", label: "Louisiana" },
+  { value: "ME", label: "Maine" },
+  { value: "MD", label: "Maryland" },
+  { value: "MA", label: "Massachusetts" },
+  { value: "MI", label: "Michigan" },
+  { value: "MN", label: "Minnesota" },
+  { value: "MS", label: "Mississippi" },
+  { value: "MO", label: "Missouri" },
+  { value: "MT", label: "Montana" },
+  { value: "NE", label: "Nebraska" },
+  { value: "NV", label: "Nevada" },
+  { value: "NH", label: "New Hampshire" },
+  { value: "NJ", label: "New Jersey" },
+  { value: "NM", label: "New Mexico" },
+  { value: "NY", label: "New York" },
+  { value: "NC", label: "North Carolina" },
+  { value: "ND", label: "North Dakota" },
+  { value: "OH", label: "Ohio" },
+  { value: "OK", label: "Oklahoma" },
+  { value: "OR", label: "Oregon" },
+  { value: "PA", label: "Pennsylvania" },
+  { value: "RI", label: "Rhode Island" },
+  { value: "SC", label: "South Carolina" },
+  { value: "SD", label: "South Dakota" },
+  { value: "TN", label: "Tennessee" },
+  { value: "TX", label: "Texas" },
+  { value: "UT", label: "Utah" },
+  { value: "VT", label: "Vermont" },
+  { value: "VA", label: "Virginia" },
+  { value: "WA", label: "Washington" },
+  { value: "WV", label: "West Virginia" },
+  { value: "WI", label: "Wisconsin" },
+  { value: "WY", label: "Wyoming" },
+  { value: "AS", label: "American Samoa" },
+  { value: "GU", label: "Guam" },
+  { value: "MP", label: "Northern Mariana Islands" },
+  { value: "PR", label: "Puerto Rico" },
+  { value: "VI", label: "U.S. Virgin Islands" },
+] as const;
+
+const STATE_CODES = new Set(US_STATES.map((s) => s.value as string));
+const ZIP_RE = /^\d{5}(-\d{4})?$/;
+
 export function topicLabel(value: string): string {
   return CONTACT_TOPICS.find((t) => t.value === value)?.label ?? "General inquiry";
 }
@@ -65,6 +128,8 @@ export function validateContact(input: Partial<ContactPayload>): ValidationResul
   const message = (input.message ?? "").trim();
   const topic = isTopic(input.topic) ? input.topic : DEFAULT_TOPIC;
   const businessName = (input.businessName ?? "").trim();
+  const state = (input.state ?? "").trim();
+  const zip = (input.zip ?? "").trim();
   const locationType =
     input.locationType === "business" || input.locationType === "residence"
       ? input.locationType
@@ -77,6 +142,9 @@ export function validateContact(input: Partial<ContactPayload>): ValidationResul
   if (phone.replace(/\D/g, "").length < 7) errors.phone = "Please enter a valid phone number.";
   if (TOPICS_WITH_BUSINESS_NAME.includes(topic) && businessName.length < 1)
     errors.businessName = "Please enter your business name.";
+  // Address fields stay optional, but validate the format when they're filled in.
+  if (state && !STATE_CODES.has(state)) errors.state = "Please choose a state.";
+  if (zip && !ZIP_RE.test(zip)) errors.zip = "Please enter a 5-digit ZIP.";
   if (message.length > 4000) errors.message = "That's a bit long — please trim it.";
 
   if (Object.keys(errors).length > 0) return { ok: false, errors };
@@ -92,8 +160,8 @@ export function validateContact(input: Partial<ContactPayload>): ValidationResul
       businessName: businessName || undefined,
       street: (input.street ?? "").trim() || undefined,
       city: (input.city ?? "").trim() || undefined,
-      state: (input.state ?? "").trim() || undefined,
-      zip: (input.zip ?? "").trim() || undefined,
+      state: state || undefined,
+      zip: zip || undefined,
       locationType,
       message: message || undefined,
     },

@@ -11,6 +11,7 @@ import {
   TOPICS_WITH_ADDRESS,
   TOPICS_WITH_BUSINESS_NAME,
   TOPICS_WITH_LOCATION_TYPE,
+  US_STATES,
   isTopic,
   type ContactTopic,
 } from "@/lib/contact";
@@ -245,23 +246,34 @@ export function ContactForm() {
               className={fieldClass}
             />
           </Field>
-          <Field label="State" htmlFor="state">
-            <Input
+          <Field label="State" htmlFor="state" error={errors.state}>
+            <select
               id="state"
               name="state"
+              defaultValue=""
               autoComplete="address-level1"
-              placeholder="ST"
-              maxLength={20}
-              className={fieldClass}
-            />
+              aria-invalid={!!errors.state}
+              className={cn(
+                fieldClass,
+                "w-full cursor-pointer appearance-none rounded-xl border border-input bg-white px-3 text-base text-charcoal focus-visible:ring-2 aria-[invalid=true]:border-coral",
+              )}
+            >
+              <option value="">State</option>
+              {US_STATES.map((s) => (
+                <option key={s.value} value={s.value}>
+                  {s.value}
+                </option>
+              ))}
+            </select>
           </Field>
-          <Field label="ZIP" htmlFor="zip">
+          <Field label="ZIP" htmlFor="zip" error={errors.zip}>
             <Input
               id="zip"
               name="zip"
               autoComplete="postal-code"
               inputMode="numeric"
               placeholder="12345"
+              aria-invalid={!!errors.zip}
               className={fieldClass}
             />
           </Field>
