@@ -206,8 +206,7 @@ export function ContactForm() {
       {TOPICS_WITH_ADDRESS.includes(topic) && (
         <fieldset className="flex flex-col gap-5 rounded-2xl border border-blush-deep/60 bg-white/50 p-5">
         <legend className="px-1 text-sm font-semibold text-charcoal">
-          Mailing address{" "}
-          <span className="font-normal text-muted-foreground">(optional)</span>
+          Mailing address
         </legend>
 
         <Field label="Street address" htmlFor="street">
@@ -255,8 +254,7 @@ export function ContactForm() {
         {/* Business or residence */}
         <div className="flex flex-col gap-2">
           <span className="text-sm font-semibold text-charcoal">
-            Is this a business or residence?{" "}
-            <span className="font-normal text-muted-foreground">(optional)</span>
+            Is this a business or residence?
           </span>
           <div className="grid grid-cols-2 gap-3">
             {LOCATION_OPTIONS.map((opt) => (
@@ -277,8 +275,8 @@ export function ContactForm() {
         </fieldset>
       )}
 
-      {/* Message (optional) */}
-      <Field label="Message" htmlFor="message" error={errors.message} hint="Optional">
+      {/* Message */}
+      <Field label="Message" htmlFor="message" error={errors.message}>
         <Textarea
           id="message"
           name="message"

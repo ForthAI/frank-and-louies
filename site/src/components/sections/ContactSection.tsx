@@ -10,7 +10,14 @@ export function ContactSection() {
         <SectionHeading
           eyebrow="Say Hello"
           title="Get in touch"
-          intro="Questions about visiting, wholesale and supply, or shipping a case of Buttercakes? Drop us a line — we read every message."
+          intro={
+            <>
+              Questions about visiting, wholesale and supply, or shipping a case
+              of Buttercakes?
+              <br />
+              Drop us a line — we read every message.
+            </>
+          }
         />
 
         <Reveal className="mx-auto mt-14 max-w-2xl">
