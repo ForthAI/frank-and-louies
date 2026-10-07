@@ -130,7 +130,7 @@ export function ContactForm() {
             id="firstName"
             name="firstName"
             autoComplete="given-name"
-            placeholder="Frank"
+            placeholder="John"
             aria-invalid={!!errors.firstName}
             className={fieldClass}
           />
@@ -140,7 +140,7 @@ export function ContactForm() {
             id="lastName"
             name="lastName"
             autoComplete="family-name"
-            placeholder="Bascio"
+            placeholder="Smith"
             aria-invalid={!!errors.lastName}
             className={fieldClass}
           />
@@ -166,7 +166,7 @@ export function ContactForm() {
             name="phone"
             type="tel"
             autoComplete="tel"
-            placeholder="(302) 555-0123"
+            placeholder="(555) 123-4567"
             aria-invalid={!!errors.phone}
             className={fieldClass}
           />
@@ -213,7 +213,7 @@ export function ContactForm() {
             id="street"
             name="street"
             autoComplete="street-address"
-            placeholder="123 Rehoboth Ave"
+            placeholder="123 Main St"
             className={fieldClass}
           />
         </Field>
@@ -224,7 +224,7 @@ export function ContactForm() {
               id="city"
               name="city"
               autoComplete="address-level2"
-              placeholder="Rehoboth Beach"
+              placeholder="Anytown"
               className={fieldClass}
             />
           </Field>
@@ -233,7 +233,7 @@ export function ContactForm() {
               id="state"
               name="state"
               autoComplete="address-level1"
-              placeholder="DE"
+              placeholder="ST"
               maxLength={20}
               className={fieldClass}
             />
@@ -244,7 +244,7 @@ export function ContactForm() {
               name="zip"
               autoComplete="postal-code"
               inputMode="numeric"
-              placeholder="19971"
+              placeholder="12345"
               className={fieldClass}
             />
           </Field>
@@ -280,7 +280,7 @@ export function ContactForm() {
           id="message"
           name="message"
           rows={5}
-          placeholder="Tell us what you're after — a case of Buttercakes, wholesale info, a question about visiting…"
+          placeholder="How can we help?"
           aria-invalid={!!errors.message}
           className="rounded-xl border-input bg-white text-base shadow-none focus-visible:ring-turquoise/40"
         />
